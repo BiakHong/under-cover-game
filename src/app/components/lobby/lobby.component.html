@@ -1,0 +1,44 @@
+<div class="lobby-container">
+  <div class="header">
+    <h1>Game Lobby</h1>
+    <div class="room-info">
+      <span>Room Code:</span>
+      <code>{{roomCode}}</code>
+    </div>
+  </div>
+
+  <div class="players-section">
+    <h3>Players</h3>
+    <div class="players-list">
+      <div *ngFor="let player of players" class="player-card">
+        <span class="player-name">{{ player.name }}</span>
+        <span *ngIf="player.isHost" class="host-badge">Host</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="host-controls" *ngIf="isHost">
+    <button (click)="startGame()" [disabled]="players.length < 2">
+      Start Game
+    </button>
+  </div>
+
+  <div class="waiting-message" *ngIf="!isHost">
+    <div class="spinner"></div>
+    <p>Waiting for host to start the game...</p>
+  </div>
+
+  <div class="share-section">
+    <h3>Invite Players</h3>
+    <div class="qr-code">
+      <qrcode 
+        [qrdata]="inviteLink" 
+        [width]="150" 
+        [errorCorrectionLevel]="'M'"
+      ></qrcode>
+    </div>
+    <button (click)="copyInviteLink()">
+      Copy Invite Link
+    </button>
+  </div>
+</div>

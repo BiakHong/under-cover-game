@@ -1,0 +1,49 @@
+<div class="join-room-container">
+  <div class="header">
+    <h1>Join Room</h1>
+    <p>Enter a room code to join the game</p>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" class="join-form">
+    <div class="form-group">
+      <label for="playerName">Your Name</label>
+      <input 
+        type="text" 
+        id="playerName" 
+        [(ngModel)]="playerName" 
+        name="playerName" 
+        required 
+        placeholder="Enter your name"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="roomCode">Room Code</label>
+      <input 
+        type="text" 
+        id="roomCode" 
+        [(ngModel)]="roomCode" 
+        name="roomCode" 
+        required 
+        placeholder="Enter room code"
+        [value]="roomCodeFromUrl"
+      >
+    </div>
+
+    <div class="qr-section" *ngIf="!roomCodeFromUrl">
+      <p>Or scan QR code to join</p>
+      <div class="qr-scanner">
+        <!-- QR Scanner component will be added here -->
+        <p class="coming-soon">QR Scanner coming soon!</p>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!isFormValid()">
+      Join Room
+    </button>
+  </form>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+</div>

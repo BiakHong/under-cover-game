@@ -1,0 +1,53 @@
+<div class="game-room-container">
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading game...</p>
+  </div>
+
+  <div *ngIf="!isLoading && room" class="game-content">
+    <div class="game-header">
+      <div class="room-info">
+        <h2>Room: {{ roomCode }}</h2>
+        <p>Time Remaining: {{ timeRemaining }}s</p>
+      </div>
+    </div>
+
+    <div class="word-display">
+      <h3>Your Word:</h3>
+      <div class="word-box">
+        <h2>{{ currentWord }}</h2>
+      </div>
+      <div *ngIf="isUndercover" class="undercover-message">
+        <p>You are the Undercover! Try to blend in with other players.</p>
+      </div>
+    </div>
+
+    <div class="players-section">
+      <h3>Players</h3>
+      <div class="players-list">
+        <div *ngFor="let player of players" class="player-card">
+          <span class="player-name">{{ player.name }}</span>
+          <span *ngIf="player.isHost" class="host-badge">Host</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!hasVoted && room.status === 'playing'" class="voting-section">
+      <h3>Vote for the Undercover</h3>
+      <div class="voting-buttons">
+        <button *ngFor="let player of players" 
+                (click)="submitVote(player.id)"
+                [disabled]="player.id === currentPlayerId">
+          Vote for {{ player.name }}
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="hasVoted" class="waiting-message">
+      <div class="spinner"></div>
+      <p>Waiting for other players to vote...</p>
+    </div>
+  </div>
+
+  <app-game-result *ngIf="showResult" [room]="room"></app-game-result>
+</div>

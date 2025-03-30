@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "BiakHong/under-cover-game",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

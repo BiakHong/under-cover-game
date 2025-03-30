@@ -1,0 +1,64 @@
+<div class="create-room-container">
+  <div class="header">
+    <h1>Create Room</h1>
+    <p>Host a new game of Under Cover</p>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" class="create-form">
+    <div class="form-group">
+      <label for="hostName">Your Name</label>
+      <input 
+        type="text" 
+        id="hostName" 
+        [(ngModel)]="hostName" 
+        name="hostName" 
+        required 
+        placeholder="Enter your name"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="category">Select Category</label>
+      <select 
+        id="category" 
+        [(ngModel)]="selectedCategory" 
+        name="category" 
+        required
+      >
+        <option value="">Choose a category</option>
+        <option *ngFor="let category of categories" [value]="category" class="dropdown">
+          {{category}}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="!isFormValid()">
+      Create Room
+    </button>
+  </form>
+
+  <div *ngIf="roomCode" class="room-info">
+    <h2>Room Created!</h2>
+    <div class="room-code">
+      <span>Room Code:</span>
+      <code>{{roomCode}}</code>
+    </div>
+    
+    <div class="qr-code">
+      <qrcode 
+        [qrdata]="inviteLink" 
+        [width]="200" 
+        [errorCorrectionLevel]="'M'"
+      ></qrcode>
+    </div>
+
+    <div class="share-options">
+      <button (click)="copyInviteLink()">
+        Copy Invite Link
+      </button>
+      <button (click)="startGame()">
+        Start Game
+      </button>
+    </div>
+  </div>
+</div> 

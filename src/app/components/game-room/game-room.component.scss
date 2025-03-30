@@ -1,0 +1,239 @@
+.game-room-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  .room-info {
+    span {
+      color: #a8a8a8;
+      margin-right: 0.5rem;
+    }
+
+    code {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #4facfe;
+      background: rgba(79, 172, 254, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+  }
+
+  .timer {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
+    padding: 0.5rem 1.5rem;
+    border-radius: 12px;
+  }
+}
+
+.game-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.word-display {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+
+  h2 {
+    margin: 0 0 1.5rem 0;
+    color: #e0e0e0;
+  }
+
+  .word-box {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #4facfe;
+    background: rgba(79, 172, 254, 0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 0 auto;
+    max-width: 400px;
+  }
+}
+
+.undercover-message {
+  text-align: center;
+  background: rgba(255, 107, 107, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+
+  h2 {
+    margin: 0 0 1rem 0;
+    color: #ff6b6b;
+  }
+
+  p {
+    color: #e0e0e0;
+    margin: 0;
+  }
+}
+
+.players-section {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+
+  h3 {
+    margin: 0 0 1.5rem 0;
+    color: #e0e0e0;
+  }
+
+  .players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .player-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 12px;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    .player-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(45deg, #4facfe, #00f2fe);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .player-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      .player-name {
+        font-weight: 500;
+      }
+
+      .player-status {
+        font-size: 0.8rem;
+        color: #4facfe;
+      }
+    }
+  }
+}
+
+.voting-section {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+
+  h3 {
+    margin: 0 0 1.5rem 0;
+    color: #e0e0e0;
+  }
+
+  .voting-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .vote-button {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.waiting-message {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #4facfe;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    animation: spin 1s linear infinite;
+  }
+
+  p {
+    color: #a8a8a8;
+    margin: 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .game-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .word-display {
+    .word-box {
+      font-size: 2rem;
+    }
+  }
+
+  .players-grid, .voting-grid {
+    grid-template-columns: 1fr;
+  }
+}
