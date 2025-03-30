@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "BiakHong/under-cover-game",
+    "public": "dist/under-cover-game/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
